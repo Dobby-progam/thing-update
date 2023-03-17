@@ -7,16 +7,16 @@ $user = $env['user'];
 $password = $env['password'];
 $database = $env['database'];
 
-echo $host;
-
 
          $conn = new mysqli($host, $user, $password, $database) or die('could not connect');
 
-         $query = "SELECT password FROM auth WHERE username = ?";
+         $query = "SELECT * FROM auth WHERE username = 'MiataBoy'";
          $result = $conn->prepare($query);
-         $result->bind_param("s", $_POST['uname']);
+         //$result->bind_param("s", $_POST['uname']);
+         echo $query;
          $result->execute();
-         $result->get_result();
+         $result->store_result();
+
 
          if ($result->num_rows == 0) {
              $password = password_hash($_POST["psw"], PASSWORD_BCRYPT);
@@ -32,7 +32,6 @@ echo $host;
              }
              $conn->close();
          }
-
 ?>
 
 <!DOCTYPE html>
@@ -44,7 +43,7 @@ echo $host;
     </head>
 
     <body>
-        Welcome <?php echo $_POST["uname"]; ?><br>
+        <h1>Authenticating... Wait...</h1>
     </body>
 
 </html>
