@@ -19,7 +19,7 @@ $database = $env['database'];
 
 
          if ($result->num_rows == 0) {
-             $password = password_hash($_POST["psw"], PASSWORD_BCRYPT);
+             $password = password_hash($_POST["psw"], PASSWORD_DEFAULT);
 
              $username = $_POST['uname'];
              $query = "INSERT INTO auth (username, password) VALUES (?, ?)";
