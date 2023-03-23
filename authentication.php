@@ -2,36 +2,32 @@
 
 $env = parse_ini_file('.env');
 
-$host = $env['host'];
 $user = $env['user'];
 $password = $env['password'];
-$database = $env['database'];
 
+$conn = new PDO('mysql:host=localhost;dbname=atomicforum', $user, $password);
+//$conn = new mysqli($host, $user, $password, $database) or die('could not connect');
 
-         $conn = new mysqli($host, $user, $password, $database) or die('could not connect');
+$stmt = $conn->prepare("SELECT password FROM auth WHERE username = ?");
+$stmt->execute([$_POST["uname"]]);
 
-         $query = "SELECT * FROM auth WHERE username = 'MiataBoy'";
-         $result = $conn->prepare($query);
-         //$result->bind_param("s", $_POST['uname']);
-         echo $query;
-         $result->execute();
-         $result->store_result();
+$result = $stmt->fetch();
+//var_dump($row);
 
+if (empty($result)) {
+    $password = password_hash($_POST["psw"], PASSWORD_BCRYPT);
 
-         if ($result->num_rows == 0) {
-             $password = password_hash($_POST["psw"], PASSWORD_BCRYPT);
+    $username = $_POST['uname'];
+    $query = $conn->prepare("INSERT INTO auth (username, password) VALUES (?, ?)");
+    $query->execute([$_POST["uname"], $password]);
+} else {
+    if (password_verify($_POST['psw'], $result['password'])) {
+        echo 'password correct';
+    } else {
+        echo "False password";
+    }
+}
 
-             $username = $_POST['uname'];
-             $query = "INSERT INTO auth (username, password) VALUES (?, ?)";
-             $stmt = $conn->prepare($query);
-             $stmt->bind_param("ss", $username, $password);
-             $stmt->execute();
-         } else {
-             if (password_verify($_POST['psw'], $result)) {
-                 echo 'password correct';
-             }
-             $conn->close();
-         }
 ?>
 
 <!DOCTYPE html>
