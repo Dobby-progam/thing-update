@@ -15,7 +15,7 @@ $result = $stmt->fetch();
 //var_dump($row);
 
 if (empty($result)) {
-    $password = password_hash($_POST["psw"], PASSWORD_BCRYPT);
+    $password = password_hash($_POST["psw"], PASSWORD_DEFAULT);
 
     $username = $_POST['uname'];
     $query = $conn->prepare("INSERT INTO auth (username, password) VALUES (?, ?)");
