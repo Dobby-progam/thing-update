@@ -11,7 +11,7 @@
 
 <form action="/authentication.php" method="post">
     <div class="imgcontainer">
-        <img src="assets/images/BlueAtomic/BlueLogoJoshuaTransparent.png" alt="Logo">
+        <img src="assets/images/BlueAtomic/AtomicLogo.png" alt="Logo">
     </div>
 
     <div class="container">
