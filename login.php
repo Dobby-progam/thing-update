@@ -21,7 +21,15 @@
         <label for="psw"><b>Password</b></label>
         <input type="password" placeholder="Enter Password" name="psw" id="psw" required>
 
-            <button type="submit">Login/Register</button>
+        <?php
+        session_start();
+        if (isset($_SESSION['badlogin']) and $_SESSION["badlogin"] == "password") :?>
+            <span style="color: red">Password incorrect.</span>
+            <?php session_destroy()?>
+        <?php endif;
+        ?>
+
+        <button type="submit">Login/Register</button>
 
         <label>
             <input type="checkbox" name="remember" required> I agree to the privacy policy.
