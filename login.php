@@ -30,10 +30,6 @@
         ?>
 
         <button type="submit">Login</button>
-
-        <label>
-            <input type="checkbox" name="remember" required> I agree to the privacy policy.
-        </label>
     </div>
 
     <div class="container footer">
