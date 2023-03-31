@@ -2,8 +2,8 @@
 
 $env = parse_ini_file('.env');
 
-$user = $env['user'];
-$password = $env['password'];
+$user = $env['USER'];
+$password = $env['PASSWORD'];
 
 $conn = new PDO('mysql:host=localhost;dbname=atomicforum', $user, $password);
 //$conn = new mysqli($host, $user, $password, $database) or die('could not connect');
