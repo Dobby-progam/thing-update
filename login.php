@@ -26,7 +26,7 @@
         var_dump($_SESSION);
         if (isset($_SESSION['badlogin']) and $_SESSION["badlogin"] == 404) :?>
             <span style="color: yellow">This user does not exist.</span>
-        <?php elseif (isset($SESSION['badlogin']) and $_SESSION["badlogin"] == 403) :?>
+        <?php elseif (isset($_SESSION['badlogin']) and $_SESSION["badlogin"] == 403) :?>
             <span style="color: red">Password incorrect.</span>
         <?php endif;
         session_destroy()?>
