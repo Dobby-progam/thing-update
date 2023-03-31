@@ -30,19 +30,3 @@ if (empty($result)) {
         exit();
     }
 }
-
-?>
-
-<!DOCTYPE html>
-
-<html lang="en">
-
-    <head>
-        <title>Authenticating...</title>
-    </head>
-
-    <body>
-        <h1>Authenticating... Wait...</h1>
-    </body>
-
-</html>
