@@ -29,7 +29,7 @@
         <?php endif;
         ?>
 
-        <button type="submit">Login</button>
+        <button type="submit" value="login">Login</button>
     </div>
 
     <div class="container footer">
