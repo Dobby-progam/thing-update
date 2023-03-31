@@ -23,13 +23,15 @@
 
         <?php
         session_start();
-        if (isset($_SESSION['badlogin']) and $_SESSION["badlogin"] == "password") :?>
+        var_dump($_SESSION);
+        if (isset($_SESSION['badlogin']) and $_SESSION["badlogin"] == 404) :?>
+            <span style="color: yellow">This user does not exist.</span>
+        <?php elseif (isset($SESSION['badlogin']) and $_SESSION["badlogin"] == 403) :?>
             <span style="color: red">Password incorrect.</span>
-            <?php session_destroy()?>
         <?php endif;
-        ?>
+        session_destroy()?>
 
-        <button type="submit" value="login">Login</button>
+        <button type="submit" name="login">Login</button>
     </div>
 
     <div class="container footer">
