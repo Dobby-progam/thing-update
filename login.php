@@ -29,7 +29,7 @@
         <?php endif;
         ?>
 
-        <button type="submit">Login/Register</button>
+        <button type="submit">Login</button>
 
         <label>
             <input type="checkbox" name="remember" required> I agree to the privacy policy.
