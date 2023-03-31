@@ -24,7 +24,10 @@ if (empty($result)) {
     if (password_verify($_POST['psw'], $result['password'])) {
         echo 'password correct';
     } else {
-        echo "False password";
+        session_start();
+        $_SESSION['badlogin'] = "password";
+        header("Location: login.php");
+        exit();
     }
 }
 
