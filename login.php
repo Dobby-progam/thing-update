@@ -23,7 +23,6 @@
 
         <?php
         session_start();
-        var_dump($_SESSION);
         if (isset($_SESSION['badlogin']) and $_SESSION["badlogin"] == 404) :?>
             <span style="color: yellow">This user does not exist.</span>
         <?php elseif (isset($_SESSION['badlogin']) and $_SESSION["badlogin"] == 403) :?>
