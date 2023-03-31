@@ -1,5 +1,7 @@
 <?php
-
+// TODO: Add mail addresses
+// TODO: Add user IDs (auto increment)
+// TODO: Make user IDs primary key
 function dbCommand(string $query, array $parameters) : mixed {
     $env = parse_ini_file('.env');
 
