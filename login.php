@@ -33,7 +33,7 @@
     </div>
 
     <div class="container footer">
-        <button type="button" class="cancelbtn">Cancel</button>
+        <button type="button" class="cancelbtn" onclick="history.back()">Cancel</button>
         <span class="psw">Forgot <a href="#">password?</a></span>
     </div>
 </form>
