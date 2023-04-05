@@ -9,7 +9,7 @@
 
 <h2>Login Form</h2>
 
-<form action="/authentication.php" method="post">
+<form action="/scripts/php/authentication.php" method="post">
     <div class="imgcontainer">
         <img src="assets/images/BlueAtomic/AtomicLogo.png" alt="Logo">
     </div>
