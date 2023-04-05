@@ -9,7 +9,7 @@
 
 <h2>Registration</h2>
 
-<form action="/scripts/php/authentication.php" method="post" name="registration">
+<form action="/authentication.php" method="post" name="registration">
 
     <div class="container">
 
