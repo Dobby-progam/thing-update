@@ -53,7 +53,7 @@ if (isset($_POST['registration'])) {
             header("Location: register.php");
             exit();
         } else {
-            echo $regInput[1];
+            throw $regInput[1];
         }
     }
 } elseif (isset($_POST['login'])) {
