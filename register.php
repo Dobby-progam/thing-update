@@ -10,22 +10,24 @@
 <h2>Registration</h2>
 
 <form action="/authentication.php" method="post" name="registration">
-    <div class="imgcontainer">
-        <img src="assets/images/BlueAtomic/AtomicLogo.png" alt="Logo">
-    </div>
 
     <div class="container">
 
         <label for="uname"><b>Username</b></label>
         <input type="text" placeholder="Enter Username" name="uname" id="uname" required>
 
+        <label for="mail"><b>e-mail address</b></label>
+        <input type="text" placeholder="Enter mail address" name="mail" id="mail" required>
+
         <label for="psw"><b>Password</b></label>
         <input type="password" placeholder="Enter Password" name="psw" id="psw" required>
 
         <?php
         session_start();
-        if (isset($_SESSION['badlogin']) and $_SESSION["badlogin"] == 403) :?>
-            <span style="color: red">A user with this name already exists.</span>
+        if (isset($_SESSION['badAuth']) and $_SESSION["badAuth"] == '403') :?>
+            <span style="color: red">A user with this name or e-mail already exists. Try <a href="login.php">logging in</a>.</span>
+        <?php elseif (isset($_SESSION['badAuth']) and $_SESSION["badAuth"] == '404') :?>
+            <span style="color: red">This is not a valid mail address.</span>
         <?php endif;
         session_destroy();?>
 
