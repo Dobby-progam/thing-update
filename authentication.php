@@ -60,6 +60,8 @@ if (isset($_POST['registration'])) {
             throw $regInput[1];
         }
     }
+
+    redirect('login.php', 200);
 } elseif (isset($_POST['login'])) {
     if (isMail($_POST['user'])) {
         $user = dbCommand('SELECT * FROM authentication WHERE mail = ?', [$_POST['user']]);
