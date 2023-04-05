@@ -1,4 +1,7 @@
 <?php
+
+use JetBrains\PhpStorm\NoReturn;
+
 function dbCommand(string $query, array $parameters) : mixed {
     $env = parse_ini_file('.env');
 
@@ -34,12 +37,16 @@ function isMail(string $mail) : bool {
     }
 }
 
+#[NoReturn] function redirect(string $page, int $code) : void {
+    session_start();
+    $_SESSION['badAuth'] = $code;
+    header("Location: $page");
+    exit();
+}
+
 if (isset($_POST['registration'])) {
     if (!isMail($_POST['mail'])) {
-        session_start();
-        $_SESSION['badAuth'] = 404;
-        header("Location: register.php");
-        exit();
+        redirect('register.php', 404);
     }
 
     $passwordHash = password_hash($_POST["psw"], PASSWORD_DEFAULT);
@@ -48,10 +55,7 @@ if (isset($_POST['registration'])) {
 
     if (!is_bool($regInput)) {
         if ($regInput[0] == 23000) {
-            session_start();
-            $_SESSION['badAuth'] = 403;
-            header("Location: register.php");
-            exit();
+            redirect('register.php', 403);
         } else {
             throw $regInput[1];
         }
@@ -64,10 +68,7 @@ if (isset($_POST['registration'])) {
     }
 
     if (empty($user)) {
-        session_start();
-        $_SESSION['badAuth'] = 404;
-        header("location: login.php");
-        exit();
+        redirect('login.php', 404);
     } else {
 
         $correctPassword = verifyPassword($user['password']);
@@ -76,10 +77,7 @@ if (isset($_POST['registration'])) {
             echo 'password correct';
         } else {
             echo 'password bad';
-            session_start();
-            $_SESSION['badAuth'] = 403;
-            header("Location: login.php");
-            exit();
+            redirect('login.php', 403);
         }
     }
 }
