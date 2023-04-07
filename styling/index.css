@@ -3,7 +3,7 @@ body {
     color: white;
 }
 
-div {
+body>div {
     padding-top: 12%;
     text-align: center;
 }

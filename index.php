@@ -13,15 +13,17 @@
             <li><a href="#contact">Contact</a></li>
             <?php
             include_once('scripts/php/functions.php');
-            $result = getAuthenticationStatus();
-            if ($result == 404) {
-                echo "<li style='float: right'><a href='login.php'>login</a></li>";
-                echo "<li style='float: right'><a href='register.php'>register</a></li>";
-            } else {
-                echo "<img src='assets/images/BlueAtomic/AtomicLogo.png' style='float: right'>";
-            }
-            ?>
-
+            $result = getAuthenticationStatus();?>
+            <?php if ($result == 404) :?>
+                <li style='float: right'><a href='login.php'>login</a></li>
+                <li style='float: right'><a href='register.php'>register</a></li>
+            <?php else :?>
+                <div class="dropdown">
+                    <a href="users/<?php echo $result['UID']?>-<?php echo $result['username'] ?>.php">
+                        <img src='assets/images/BlueAtomic/AtomicLogo.png' style='float: right' alt="user profile">
+                    </a>
+                </div>
+            <?php endif;?>
         </ul>
     </nav>
 
