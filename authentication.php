@@ -34,6 +34,10 @@ if (isset($_POST['registration'])) {
 
         if ($correctPassword) {
             echo 'password correct';
+            session_start();
+            $_SESSION['authentication'] = $user['UID'];
+            header('Location: index.php');
+            exit();
         } else {
             echo 'password bad';
             redirect('login.php', 403);
