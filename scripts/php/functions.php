@@ -42,3 +42,13 @@ function isMail(string $mail) : bool {
     header("Location: $page");
     exit();
 }
+
+function getAuthenticationStatus() : mixed {
+    session_start();
+
+    if (isset($_SESSION['authentication'])) {
+        return dbCommand('SELECT * FROM authentication WHERE UID = ?', [$_SESSION['authentication']]);
+    } else {
+        return 404;
+    }
+}
