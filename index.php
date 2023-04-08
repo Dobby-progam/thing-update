@@ -18,11 +18,10 @@
                 <li style='float: right'><a href='login.php'>login</a></li>
                 <li style='float: right'><a href='register.php'>register</a></li>
             <?php else :?>
-                <div class="dropdown">
-                    <a href="users/<?php echo $result['UID']?>-<?php echo $result['username'] ?>.php">
-                        <img src='assets/images/BlueAtomic/AtomicLogo.png' style='float: right' alt="user profile">
-                    </a>
-                </div>
+                <a href="users/<?php echo $result['UID']?>-<?php echo $result['username'] ?>.php">
+                    <img src='assets/images/BlueAtomic/AtomicLogo.png' style='float: right' alt="user profile">
+                </a>
+                <li style="float: right"><a href="scripts/php/logout.php">log out</a></li>
             <?php endif;?>
         </ul>
     </nav>
