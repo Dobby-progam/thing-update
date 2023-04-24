@@ -2,7 +2,7 @@
 use JetBrains\PhpStorm\NoReturn;
 
 function dbCommand(string $query, array $parameters) : mixed {
-    $env = parse_ini_file('.env');
+    $env = parse_ini_file('example.env');
 
     $user = $env['USER'];
     $password = $env['PASSWORD'];
@@ -45,7 +45,6 @@ function isMail(string $mail) : bool {
 
 function getAuthenticationStatus() : mixed {
     session_start();
-
     if (isset($_SESSION['authentication'])) {
         return dbCommand('SELECT * FROM authentication WHERE UID = ?', [$_SESSION['authentication']]);
     } else {
