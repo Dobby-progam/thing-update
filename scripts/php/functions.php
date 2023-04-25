@@ -1,13 +1,21 @@
 <?php
 use JetBrains\PhpStorm\NoReturn;
+function getAuthenticationStatus() : mixed {
+    session_start();
 
+    if (isset($_SESSION['authentication'])) {
+        return dbCommand('SELECT * FROM authentication WHERE UID = ?', [$_SESSION['authentication']]);
+    } else {
+        return 404;
+    }
+}
 function dbCommand(string $query, array $parameters) : mixed {
     $env = parse_ini_file('.env');
 
     $user = $env['USER'];
     $password = $env['PASSWORD'];
 
-    $conn = new PDO('mysql:host=localhost;dbname=atomicforum', $user, $password);
+    $conn = new PDO('mysql:host=localhost;dbname=d', $user, $password);
 
     try {
         $stmt = $conn->prepare($query);
@@ -43,12 +51,4 @@ function isMail(string $mail) : bool {
     exit();
 }
 
-function getAuthenticationStatus() : mixed {
-    session_start();
 
-    if (isset($_SESSION['authentication'])) {
-        return dbCommand('SELECT * FROM authentication WHERE UID = ?', [$_SESSION['authentication']]);
-    } else {
-        return 404;
-    }
-}
